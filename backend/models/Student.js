@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 let studentSchema = new Schema(
   {
     name: {
-      type: String,
+      type: Date,
     },
     email: {
       type: String,
     },
     rollno: {
-      type: Number,
+      type: String,
     },
   },
   {

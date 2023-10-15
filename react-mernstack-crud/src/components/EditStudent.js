@@ -44,9 +44,9 @@ function EditStudent() {
       <div className="form-wrapper">
         <form onSubmit={onUpdate}>
           <div className="mb-3">
-            <label className="form-label">Name</label>
+            <label className="form-label">Deadline</label>
             <input
-              type="text"
+              type="date"
               className="form-control"
               name="name"
               id="name"
@@ -55,7 +55,7 @@ function EditStudent() {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Email</label>
+            <label className="form-label">Task</label>
             <input
               type="text"
               className="form-control"
@@ -66,19 +66,51 @@ function EditStudent() {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Roll no.</label>
-            <input
+            <label className="form-label">Status</label>
+            {/* <input
               type="text"
               className="form-control"
               name="rollno"
               id="rollno"
               value={userForm.rollno}
               onChange={inputsHandler}
-            />
-          </div>
+            /> */}
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly' }}>
+                <label style={{ margin: '1vh' }}>
+                  <input
+                    type="radio"
+                    name="rollno"
+                    value="pending"
+                    checked={userForm.rollno === "pending"}
+                    onChange={inputsHandler}
+                  />
+                  Pending
+                </label >
+                <label style={{ margin: '1vh' }}>
+                  <input
+                    type="radio"
+                    name="rollno"
+                    value="ongoing"
+                    checked={userForm.rollno === "ongoing"}
+                    onChange={inputsHandler}
+                  />
+                  Ongoing
+                </label>
+                <label style={{ margin: '1vh' }}>
+                  <input
+                    type="radio"
+                    name="rollno"
+                    value="completed"
+                    checked={userForm.rollno === "completed"}
+                    onChange={inputsHandler}
+                  />
+                  Completed
+                </label>
+              </div>
+            </div>
           <div className="mb-3">
             <button type="submit" className="btn btn-primary">
-              Update
+              Add
             </button>
           </div>
         </form>

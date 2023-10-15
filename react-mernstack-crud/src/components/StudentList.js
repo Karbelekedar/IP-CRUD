@@ -29,9 +29,9 @@ function StudentList() {
         <thead>
           <tr>
             {/* <th scope="col">#</th> */}
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Roll no</th>
+            <th scope="col">Deadline</th>
+            <th scope="col">Task</th>
+            <th scope="col">Status</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
