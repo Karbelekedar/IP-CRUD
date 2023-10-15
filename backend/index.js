@@ -3,10 +3,12 @@ let mongoose = require("mongoose");
 let cors = require("cors");
 let bodyParser = require("body-parser");
 // Express Route
-const studentRoute = require("./Routes/student.routes.js");
+const taskRoute = require("./Routes/routes.js");
 // Connecting mongoDB Database
 mongoose
-  .connect("mongodb+srv://crudapp8:15Ltj788yLLENZ4k@cluster0.8higuog.mongodb.net/test?retryWrites=true&w=majority")
+  .connect(
+    "mongodb+srv://crudapp8:15Ltj788yLLENZ4k@cluster0.8higuog.mongodb.net/test?retryWrites=true&w=majority"
+  )
   .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -23,7 +25,7 @@ app.use(
   })
 );
 app.use(cors());
-app.use("/students", studentRoute);
+app.use("/tasks", taskRoute);
 // PORT
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {

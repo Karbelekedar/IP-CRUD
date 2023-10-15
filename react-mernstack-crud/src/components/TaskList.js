@@ -1,34 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-function StudentList() {
-  const [userForm, setUserForm] = useState([]);
-  const deleteStudent = (_id) => {
+
+function TaskList() {
+  const [tasks, setTasks] = useState([]);
+
+  const deleteTask = (_id) => {
     axios
-      .delete("http://localhost:4000/students/delete-student/" + _id)
+      .delete("http://localhost:4000/tasks/" + _id)
       .then(() => {
         console.log("Data successfully deleted!");
+        // Filter out the deleted task from the current state
+        setTasks((prevTasks) => prevTasks.filter((task) => task._id !== _id));
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
   useEffect(() => {
     axios
-      .get("http://localhost:4000/students/")
+      .get("http://localhost:4000/tasks/")
       .then((res) => {
-        setUserForm(res.data.data);
+        setTasks(res.data.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [userForm]);
+  }, []);
+
   return (
     <div>
       <table className="table">
         <thead>
           <tr>
-            {/* <th scope="col">#</th> */}
             <th scope="col">Deadline</th>
             <th scope="col">Task</th>
             <th scope="col">Status</th>
@@ -36,23 +41,22 @@ function StudentList() {
           </tr>
         </thead>
         <tbody>
-          {userForm.map((user, index) => {
+          {tasks.map((task, index) => {
             return (
               <tr key={index}>
-                {/* <th scope="row">{user._id}</th> */}
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.rollno}</td>
+                <td>{task.deadline}</td>
+                <td>{task.task}</td>
+                <td>{task.status}</td>
                 <td>
                   <Link
                     className="btn btn-primary btn-sm me-2"
-                    to={"/edit-student/" + user._id}
+                    to={"/edit-task/" + task._id}
                   >
                     Edit
                   </Link>
                   <button
                     className="btn btn-danger btn-sm"
-                    onClick={() => deleteStudent(user._id)}
+                    onClick={() => deleteTask(task._id)}
                   >
                     Delete
                   </button>
@@ -65,4 +69,5 @@ function StudentList() {
     </div>
   );
 }
-export default StudentList;
+
+export default TaskList;
