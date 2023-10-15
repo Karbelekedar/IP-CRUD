@@ -6,7 +6,7 @@ let bodyParser = require("body-parser");
 const studentRoute = require("./Routes/student.routes.js");
 // Connecting mongoDB Database
 mongoose
-  .connect("mongodb://127.0.0.1:27017/test")
+  .connect("mongodb+srv://crudapp8:15Ltj788yLLENZ4k@cluster0.8higuog.mongodb.net/test?retryWrites=true&w=majority")
   .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
